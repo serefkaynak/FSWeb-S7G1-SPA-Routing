@@ -6,6 +6,10 @@ export default function Film(props) {
 
   let id = 1;
   // URL'den alınan :id parametresini bu değişkene aktarın
+  if (props.match.params.id) {
+    id = props.match.params.id;
+  }
+
 
   useEffect(() => {
     axios
@@ -13,13 +17,15 @@ export default function Film(props) {
       .then(response => {
           // Bu kısmı log statementlarıyla çalışın
           // ve burdan gelen response'u 'movie' e aktarın
+          setMovie(response.data);
       })
       .catch(error => {
         console.error(error);
       });
     // Bu effect her `id ` değiştiğinde çalışmalı
     // Bunu nasıl gerçekleştirebiliriz?
-  }, []);
+    // useEffect ile yapılmalı
+  }, [movie]);
 
   // Yalnızca esnek görevlere geçtiğinizde burdaki yorum etiketini kaldırın
   // const filmiKaydet = evt => { }

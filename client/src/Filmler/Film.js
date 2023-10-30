@@ -8,6 +8,7 @@ export default function Film(props) {
   // URL'den alınan :id parametresini bu değişkene aktarın
   if (props.match.params.id) {
     id = props.match.params.id;
+    console.log(id);
   }
 
 
@@ -25,7 +26,7 @@ export default function Film(props) {
     // Bu effect her `id ` değiştiğinde çalışmalı
     // Bunu nasıl gerçekleştirebiliriz?
     // useEffect ile yapılmalı
-  }, [movie]);
+  }, []);
 
   // Yalnızca esnek görevlere geçtiğinizde burdaki yorum etiketini kaldırın
   // const filmiKaydet = evt => { }

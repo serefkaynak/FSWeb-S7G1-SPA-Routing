@@ -12,6 +12,7 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
+    // App Componenti router provider componenti ile wraplanmeli.
 
     <BrowserRouter>
     <App />

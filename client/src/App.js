@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import { Switch, Route } from 'react-router-dom';
+
 
 
 import KaydedilenlerListesi from './Filmler/KaydedilenlerListesi';
@@ -43,17 +43,15 @@ export default function App () {
       <KaydedilenlerListesi list={saved} />
       <Switch>
 
-        <Route exact path="/">
-          <FilmListesi 
-            movie={movieList}
+        <Route path="/" exact>
+          <FilmListesi
+            movies={movieList}
           />
         </Route>
 
-        {/*İkinci route'unuz /filmler/ parametresinden sonra id parametresini alacak (örnek: /filmler/2, /filmler/3). id dinamik olacak. Bu route Film bileşenini yükleyecek.*/}
-        <Route path="/filmler/:id">
+        <Route path="/filmler/:id" exact>
           <Film 
-            saved={saved}
-            KaydedilenlerListesineEkle={KaydedilenlerListesineEkle}
+          KaydedilenlerListesineEkle = {KaydedilenlerListesineEkle}
           />
         </Route>
 

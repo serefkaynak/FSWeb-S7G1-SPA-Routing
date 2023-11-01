@@ -2,15 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Switch, Route } from 'react-router-dom';
 
-
-
 import KaydedilenlerListesi from './Filmler/KaydedilenlerListesi';
 import FilmListesi from './Filmler/FilmListesi';
 import Film from './Filmler/Film';
 
 
 export default function App () {
-  const [saved, setSaved] = useState([]); // Stretch: the ids of "saved" movies
+  const [saved, setSaved] = useState([]);
   const [movieList, setMovieList] = useState([]);
 
   useEffect(() => {
@@ -30,17 +28,14 @@ export default function App () {
   }, []);
 
   const kaydedilenlerListesineEkle = (movie) => {
-    // Burası esnek. Aynı filmin birden fazla kez "saved" e eklenmesini engelleyin
     if (!saved.find((m) => m.id == movie.id )) {
       setSaved([...saved, movie]);
-
     }
-    // saved'a eklenen id'yi 'saved' array'e ekleyin
   };
 
   const listedenCikar = (movie) => {
     setSaved(saved.filter((m) => m.id != movie.id));
-  
+    //Listeden Çıkar fonksiyonu ile kaydedilenler listesine eklenenleri silin
   }
 
   return (

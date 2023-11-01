@@ -5,6 +5,7 @@ import FilmCard from './FilmCard';
 
 export default function Film(props) {
   const [movie, setMovie] = useState();
+  const { kaydedilenlerListesineEkle, saved, listedenCikar } = props;
   const { id } = useParams();
 
 
@@ -21,10 +22,17 @@ export default function Film(props) {
   // Yalnızca esnek görevlere geçtiğinizde burdaki yorum etiketini kaldırın
   // const filmiKaydet = evt => { }
 
+
   if (!movie) {
     return <div>Film bilgisi yükleniyor...</div>;
   }
 
   const { title, director, metascore, stars } = movie;
 
-  return <FilmCard />;
+  return <FilmCard
+    saved= {saved}
+    movie = {movie} 
+    kaydedilenlerListesineEkle={kaydedilenlerListesineEkle}
+    listedenCikar={listedenCikar}
+    />;
+}

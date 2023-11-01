@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 export default function KaydedilenlerListesi(props) {
@@ -7,12 +8,20 @@ export default function KaydedilenlerListesi(props) {
   return (
     <div className="saved-list">
       <h3>Kaydedilen Filmler:</h3>
-      {props.list.map(movie => (
-        <span className="saved-movie">{movie.title}</span>
-      ))}
-      <button className="home-button" onClick={() => 
-        props.history.push('/')
-       } >Anasayfa</button>
+      <ul>
+        {props.list.map(movie => (
+          <li key={movie.id} className="saved-movie">
+            <NavLink to={`/filmler/${movie.id}`}>
+            
+            {movie.title}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+      <button className="home-button" 
+      onClick={() => {
+        history.push('/');
+      }} >Anasayfa</button>
     </div>
-  );
+  ); 
 }

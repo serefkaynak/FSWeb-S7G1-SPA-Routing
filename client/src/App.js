@@ -29,14 +29,19 @@ export default function App () {
     FilmleriAl();
   }, []);
 
-  const KaydedilenlerListesineEkle = id => {
+  const kaydedilenlerListesineEkle = (movie) => {
     // Burası esnek. Aynı filmin birden fazla kez "saved" e eklenmesini engelleyin
-    if (!saved.includes(id)) {
-      setSaved([...saved, id]);
-      console.log(saved);
+    if (!saved.find((m) => m.id == movie.id )) {
+      setSaved([...saved, movie]);
+
     }
     // saved'a eklenen id'yi 'saved' array'e ekleyin
   };
+
+  const listedenCikar = (movie) => {
+    setSaved(saved.filter((m) => m.id != movie.id));
+  
+  }
 
   return (
     <div>
@@ -46,13 +51,22 @@ export default function App () {
         <Route path="/" exact>
           <FilmListesi
             movies={movieList}
+            saved={saved}
+            kaydedilenlerListesineEkle={kaydedilenlerListesineEkle}
+            listedenCikar={listedenCikar}
           />
         </Route>
 
         <Route path="/filmler/:id" exact>
-          <Film 
-          KaydedilenlerListesineEkle = {KaydedilenlerListesineEkle}
+          <Film
+            saved={saved}
+            kaydedilenlerListesineEkle = {kaydedilenlerListesineEkle}
+            listedenCikar={listedenCikar}
           />
+        </Route>
+
+        <Route path="*" exact>
+          <h1>404</h1>
         </Route>
 
       </Switch>
